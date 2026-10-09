@@ -1,0 +1,35 @@
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: nutriscan-backend
+    ports:
+      - "8000:8000"
+    environment:
+      - APP_NAME=NutriScan AI Backend
+      - APP_VERSION=1.0.0
+      - GEMMA_MODEL=gemma-4-27b-it
+      - GEMMA_PROVIDER=demo
+      - GEMMA_API_KEY=
+      - MAX_IMAGE_UPLOAD_BYTES=10485760
+    restart: unless-stopped
+    networks:
+      - nutriscan-network
+
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: nutriscan-frontend
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+    restart: unless-stopped
+    networks:
+      - nutriscan-network
+
+networks:
+  nutriscan-network:
+    driver: bridge
