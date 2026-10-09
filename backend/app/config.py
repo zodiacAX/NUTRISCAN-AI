@@ -20,9 +20,13 @@ class Settings(BaseSettings):
     ALLOWED_IMAGE_TYPES: List[str] = ["image/jpeg", "image/png", "image/webp"]
     ALLOWED_IMAGE_EXTENSIONS: List[str] = [".jpg", ".jpeg", ".png", ".webp"]
 
-    # External Nutrition Database
-    OPENFOODFACTS_BASE_URL: str = "https://world.openfoodfacts.org"
-    OPENFOODFACTS_TIMEOUT_SECONDS: int = 6
+    # External Nutrition Databases (Public APIs)
+    OPENFOODFACTS_BASE_URL: str = "https://world.openfoodfacts.net"
+    OPENFOODFACTS_FALLBACK_URL: str = "https://us.openfoodfacts.org"
+    OPENFOODFACTS_TIMEOUT_SECONDS: int = 8
+    USDA_BASE_URL: str = "https://api.nal.usda.gov/fdc/v1"
+    USDA_API_KEY: str = "DEMO_KEY"
+    FRUITYVICE_BASE_URL: str = "https://www.fruityvice.com/api"
 
     # CORS
     CORS_ORIGINS: List[str] = [
